@@ -1,0 +1,21 @@
+SKU,Name,Category,Vendor_id,Vendor
+PY42,"Amitriptyline hydrochloride, 25mg coated tablet",Drugs_Psychiatric_&_Antiepileptic,1,Imres
+HT89,"Amlodipine besylate, 5mg tablet",Drugs_Cardiovascular,1,Imres
+SU61,"Amoxicillin, Powder for suspension, 25mg/mL, 100mL bottle",Drugs_Antibiotic,1,Imres
+XT64,"Amoxicillin, 50mg/mL (250mg/5mL), Powder for oral suspension, 100mL bottle",Drugs_Antibiotic,1,Imres
+ZF67,"Amoxicillin, 500mg tablet",Drugs_Antibiotic,1,Imres
+UH08,"Amphotericin B, Powder for injection, 50mg vial",Drugs_Antifungal,1,Imres
+GU65,"Ampicillin, Powder for injection, 1g vial",Drugs_Antibiotic,1,Imres
+DD95,"Anti-haemorrhoid ointment, 30g tube",Drugs_Dermatology,1,Imres
+NP66,"Atenolol, 50mg tablet",Drugs_Autonomic_Nervous_System,1,Imres
+KA10,"Atropine sulphate, 1mg/mL, 1mL ampoule",Drugs_Autonomic_Nervous_System,1,Imres
+EJ07,"Atropine sulphate, Eye drops, 1%, 10mL bottle",Drugs_Ophthalmic,1,Imres
+JU31,"Beclomethasone, 50mcg/dose, 200 dose inhaler",Drugs_Respiratory_&_Antihistamine,1,Imres
+YY11,"Bisacodyl, 5mg, enteric coated tablet",Drugs_Gastrointestinal,1,Imres
+YN83,"Mask, Surgical",MedEquip&Supplies_Surgical,2,McKesson Medical
+RB70,"Pad, Alcohol prep",MedEquip&Supplies_Skin_Prep,2,McKesson Medical
+MB37,"Drainage Unit, Single chamber, Self-sealing sample ports, Sterile, 2500mL",MedEquip&Supplies_Wound_Drains,2,McKesson Medical
+YP81,"Metoclopramide hydrochloride, 5mg/mL, 2mL ampoule",Drugs_Gastrointestinal,3,IDA
+YK34,Microscope coverslips 22x22mm glass,Lab_General_Supplies,3,IDA
+EC62,"Slide, Microscope, Glass, 26mm x 76mm x 1mm",Lab_General_Supplies,3,IDA
+HT61,"Nystatin, 100,000 international units, vaginal insert",Drugs_Antifungal,3,IDA
