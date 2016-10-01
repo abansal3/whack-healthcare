@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>MedRelay</title>
+<link type="text/css" rel="stylesheet" href="reset.css" />
+<link type="text/css" rel="stylesheet" href="MedRelay.css" />
+</head>
+
+<style>
+div#background{
+  position:relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url('background_img.jpg');
+  background-size: cover;
+}
+
+div#filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color:rgba(70, 96, 129, 0.4);
+}
+
+#login {
+  width: 34%;
+  height: 50%;
+  margin: auto;
+  background-color: rgba(128,128,128,0.7);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+#heading{
+	color: white;
+	font-family: Sans-serif;
+	font-size: 60px;
+}
+
+input {
+	height: 20px;
+	width: 60%;
+	padding: 5px;
+}
+
+button {
+	height: 50px;
+	width: 64%;
+	padding: 3px;
+	font-family: serif;
+	font-weight: bold;
+	font-size: 20px;
+	color: white;
+	background: rgba(47, 134, 240, 0.5);
+}
+
+input,button {
+	margin: auto;
+}
+
+</style>
+
+
+<body>
+<div id="background">
+	<div id = "filter">
+		<div id="login">
+			<h1 id = "heading">MedRelay</h1>
+			<input name="name" placeholder="Name" id="username" type="text" size="25" />
+			<input name="password" placeholder="Password" id="password" type="text" size="25" />
+			<button type="button">Enter MedRelay</button>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+function submit(){
+  var name = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  // submit for verification
+
+  // for(i = 0; i < 5; i++){
+  //   if( author == bookInfo[i][0].Author || title == bookInfo[i][1].Title){
+  //       document.getElementById("reusltbar").innerHTML = bookInfo[i][2].Description;
+  //   }
+  // }
+}
+</script>
+
+</body>
+</html>
+
