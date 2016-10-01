@@ -1,0 +1,23 @@
+{
+  "name": "whack-healthcare",
+  "version": "1.0.0",
+  "description": "Healthcare tracking",
+  "main": "index.js",
+  "dependencies": {
+    "twilio": "^2.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abansal3/whack-healthcare.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abansal3/whack-healthcare/issues"
+  },
+  "homepage": "https://github.com/abansal3/whack-healthcare#readme"
+}
