@@ -4,6 +4,26 @@ var authToken = '21728edeb603084b5beda48e38c83db4';   // Your Auth Token from ww
 var twilio = require('twilio');
 var client = new twilio.RestClient(accountSid, authToken);
 
+
+// Database connection
+
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'build2',
+  password : 'noidea',
+  database : 'medrelay'
+});
+
+connection.connect();
+
+connection.query('SELECT * from vendor', function(err, rows, fields) {
+    if (err) throw err;
+    console.log(rows);
+});
+
+connection.end();
+
 /*client.messages.create({
     body: 'Hello from Dorothy',
     to: '+16173566919',  // Text this number
