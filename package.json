@@ -5,7 +5,11 @@
   "main": "index.js",
   "dependencies": {
     "mysql": "^2.11.1",
-    "twilio": "^2.11.0"
+    "twilio": "^2.11.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "file-system": "^2.2.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {},
   "scripts": {
