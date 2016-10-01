@@ -44,7 +44,7 @@ var connection = mysql.createConnection({
 });
 
 // Database example
-connection.connect();
+//connection.connect();
 
 /*connection.query('SELECT * from vendor', function(err, rows, fields) {
     if (err) throw err;
@@ -88,7 +88,7 @@ function list_messages() {
     });
 }
 
-list_messages();
+//list_messages();
 
 // bind the app to listen for connections on a specified port
 app.listen(port, function () {
