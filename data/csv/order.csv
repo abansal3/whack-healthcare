@@ -1,0 +1,9 @@
+order_id,doctor_id,SKU,quantity,date,order_status
+1,1,PY42,3,Sep. 20. 2016,Completed
+2,1,XT64,5,Sep. 20. 2016,Completed
+3,2,YP81,10,Sep. 26. 2016,Completed
+4,2,RB70,24,Sep. 26. 2016,Completed
+5,3,NP66,4,Sep. 30. 2016,Pending
+6,4,PY42,29,Sep. 30. 2016,Pending
+7,4,GU65,38,Sep. 30. 2016,Pending
+8,5,HT61,24,Oct. 1. 2016,Pending
