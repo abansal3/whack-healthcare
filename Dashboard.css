@@ -1,6 +1,6 @@
 * {
     margin: 0;
-    paddin: 0;
+    padding: 0;
 }
 
 body {
@@ -17,19 +17,20 @@ header {
 }
 
 header h2 {
-  margin: auto;
+  margin-left: 30px;
   color: white;
-  width: 80%;
+  width: 90%;
+  font-size: 35px;
 }
 
 #logout {
     height: 50%;
     width: 100px;
-    margin-right: 2%;
+    margin-right: 20px;
     border: 2px solid rgba(87, 119, 242, 1);
     background: white;
     color: black;
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
 #profile {
