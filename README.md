@@ -18,6 +18,9 @@ Our codes use Twilio to process the SMS messages from users and send the informa
 * Angular-chart.js - data visualization
 * HTML,CSS, JavaScript - front-end design
 
+## Usage
+
+* For doctors to request medicine, they must send it in format "Medrelay, MedicineCode Quantity, Medicine Code Quantity, MedicineCode Quantity"
 
 ## Authors
 
