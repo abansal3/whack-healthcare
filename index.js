@@ -74,7 +74,7 @@ app.get('/dashboard', function (req,res) {
 
 app.get('/vendors/orders/', function(req,res) {
 
-    var ordersQuery = "SELECT orders.*, Vendor.Vendor_id, Vendor, Name FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU left join vendor ON medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor ON orders.doctor_id = doctor.doctor_id WHERE Vendor.Vendor_id = " + req.session.user.Vendor_id + " order by order_status DESC,date";
+    var ordersQuery = "SELECT orders.*, Vendor.Vendor_id, Vendor, Name FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU left join vendor ON medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor ON orders.doctor_id = doctor.doctor_id WHERE Vendor.Vendor_id = " + req.session.user.Vendor_id + " order by date DESC";
 
     connection.query(ordersQuery, function(err, rows, fields) {
         if (err) throw err;

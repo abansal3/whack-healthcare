@@ -73,8 +73,8 @@ div#background{
 }
 
 div#circle {
-    height: 200px;
-    width: 200px;
+    height: 70%;
+    width: 70%;
     border-radius: 50%;
     border: 1px solid white;
     display: flex;
