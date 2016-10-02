@@ -44,7 +44,7 @@ var connection = mysql.createConnection({
 });
 
 // Database example
-//connection.connect();
+connection.connect();
 
 /*connection.query('SELECT * from vendor', function(err, rows, fields) {
     if (err) throw err;
@@ -74,21 +74,28 @@ function list_messages() {
                     var timestamp = message.date_sent;
 
                     var phone = message.from;
-                    console.log(phone);
+                    var phone_parsed = phone.slice(2,phone.length);
 
-                    var insertQuery = "INSERT INTO orders (SKU,quantity) VALUES ('" + sku + "','" + quantity + "');";
+                    var doctorQuery = "SELECT doctor_id FROM doctor WHERE Phone = '" + phone_parsed + "';";
 
-                    /*connection.query(insertQuery, function(err, rows, fields) {
+                    connection.query(doctorQuery, function(err, rows, fields) {
                         if (err) throw err;
-                        console.log(rows);
-                    });*/
+                        var doctor_id = rows[0].doctor_id;
+
+                        var insertQuery = "INSERT INTO orders (SKU,quantity,doctor_id, date,order_status) VALUES ('" + sku + "','" + quantity + "','" + doctor_id + "','" + timestamp +  "','Pending');";
+
+                        connection.query(insertQuery, function(err, rows, fields) {
+                            if (err) throw err;
+                            console.log(rows);
+                        });
+                    });
                 });
             }
         });
     });
 }
 
-//list_messages();
+list_messages();
 
 // bind the app to listen for connections on a specified port
 app.listen(port, function () {
