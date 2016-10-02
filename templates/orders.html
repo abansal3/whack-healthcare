@@ -1,0 +1,36 @@
+<table id="orders">
+    <tr>
+        <th>
+            Medicine ID
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Doctor Name
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Status
+        </th>
+    </tr>
+    <tr ng-repeat="order in orders">
+        <td>
+            {{order.SKU}}
+        </td>
+        <td>
+            {{order.quantity}}
+        </td>
+        <td>
+            {{order.Name}}
+        </td>
+        <td>
+            {{order.date}}
+        </td>
+        <td>
+            {{order.order_status}}
+        </td>
+    </tr>
+</table>

@@ -38,10 +38,42 @@ header h2 {
   border-right: 1px solid black;
 }
 
+/* Dashboard */
+
 #dashboard {
   width: 85%;
   height: 100%;
   background-color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#dashboard * {
+    margin-top: 5%;
+}
+
+table#orders {
+    width: 70%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table#orders tr {
+    height: 30px;
+}
+
+table#orders > td {
+    margin: 0;
+    padding: 0;
+}
+
+table#orders, tr, td, th {
+    border: 1px solid black;
+}
+
+table#orders tr:nth-child(even) {
+    background: #f2f2f2;
 }
 
 #profileName{
@@ -68,8 +100,12 @@ header h2 {
   padding-left: 20px;
   display: flex;
   align-items: center;
-  border-bottom: 0.2px solid rgba(0,0,0,0.4);
   color: lightgray;
+}
+
+.panel:hover {
+    cursor: pointer;
+    color: white;
 }
 
 .panel i {
