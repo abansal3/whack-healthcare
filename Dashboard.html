@@ -8,10 +8,11 @@
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js" rel="stylesheet" type="text/css" />
 
-
 <!-- Angular -->
 <script src="https://code.angularjs.org/1.5.8/angular.min.js"></script>
 <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+<script src="node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
 <script src="app.js"></script>
 </head>
 
@@ -33,9 +34,59 @@
           </div>
         </div>
       </div>
-      <div id="dashboard" ng-view>
-
-      </div>
+      <div id="dashboard">
+          <div id="orders" class="templates" ng-if="orders_show">
+              <h1>Orders Received</h1>
+              <table id="orders">
+                  <tr>
+                      <th>
+                          Order ID
+                      </th>
+                      <th>
+                          Medicine ID
+                      </th>
+                      <th>
+                          Quantity
+                      </th>
+                      <th>
+                          Doctor Name
+                      </th>
+                      <th>
+                          Date
+                      </th>
+                      <th>
+                          Status
+                      </th>
+                  </tr>
+                  <tr ng-repeat="order in orders">
+                      <td>
+                          {{order.order_id}}
+                      </td>
+                      <td>
+                          {{order.SKU}}
+                      </td>
+                      <td>
+                          {{order.quantity}}
+                      </td>
+                      <td>
+                          {{order.Name}}
+                      </td>
+                      <td>
+                          {{order.date}}
+                      </td>
+                      <td class="status" ng-class="order.order_status == 'Completed' ? 'completed' : 'pending'">
+                          {{order.order_status}}
+                      </td>
+                  </tr>
+              </table>
+          </div>
+          <div id="analytics" class="templates" ng-if="analytics_show">
+              <h3>Total Orders By Day (Categorized by Medicine ID)</h3>
+              <canvas id="line" class="chart chart-line" chart-data="data1" chart-labels="labels1" chart-series="series1" chart-options="options1" chart-dataset-override="datasetOverride1" chart-click="onClick1">
+              </canvas>
+              <h3>Total Orders By Doctors</h3>
+              <canvas id="bar" class="chart chart-bar" chart-data="data2" chart-labels="labels2" chart-series="series2"></canvas>
+          </div>
     </div>
 </body>
 

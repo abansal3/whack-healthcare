@@ -4,8 +4,8 @@
 }
 
 body {
-  height: 100vh;
-  font-family: sans-serif;
+    height: 100vh;
+    font-family: sans-serif;
 }
 
 header {
@@ -44,13 +44,7 @@ header h2 {
   width: 85%;
   height: 100%;
   background-color: white;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-#dashboard * {
-    margin-top: 5%;
+  overflow-y: scroll;
 }
 
 #profileName{
@@ -78,6 +72,7 @@ header h2 {
   align-items: center;
   color: lightgray;
   padding-left: 20%;
+  box-sizing: border-box;
 }
 
 .panel:hover {
@@ -90,16 +85,47 @@ header h2 {
     margin-right: 10%;
 }
 
+div.templates {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 5%;
+    margin: auto;
+}
+
+div.templates h3 {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+canvas {
+    margin: 5% 0%;
+}
+
 /* Orders */
 
+div#orders h1 {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
 table#orders {
-    width: 70%;
+    width: 100%;
     text-align: center;
     border-collapse: collapse;
 }
 
 table#orders tr {
-    height: 30px;
+    height: 60px;
+}
+
+table th {
+    background: #252D38;
+    color: white;
 }
 
 table#orders > td {
@@ -113,4 +139,18 @@ table#orders, tr, td, th {
 
 table#orders tr:nth-child(even) {
     background: #f2f2f2;
+}
+
+td.status {
+    font-weight: 600;
+}
+
+.pending {
+    background: red;
+    color: white;
+}
+
+.completed {
+    background: green;
+    color: white;
 }
