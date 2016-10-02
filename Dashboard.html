@@ -40,6 +40,9 @@
               <table id="orders">
                   <tr>
                       <th>
+                          Order ID
+                      </th>
+                      <th>
                           Medicine ID
                       </th>
                       <th>
@@ -57,6 +60,9 @@
                   </tr>
                   <tr ng-repeat="order in orders">
                       <td>
+                          {{order.order_id}}
+                      </td>
+                      <td>
                           {{order.SKU}}
                       </td>
                       <td>
@@ -68,15 +74,18 @@
                       <td>
                           {{order.date}}
                       </td>
-                      <td>
+                      <td class="status" ng-class="order.order_status == 'Completed' ? 'completed' : 'pending'">
                           {{order.order_status}}
                       </td>
                   </tr>
               </table>
           </div>
           <div id="analytics" class="templates" ng-if="analytics_show">
-              <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+              <h3>Total Orders By Day (Categorized by Medicine ID)</h3>
+              <canvas id="line" class="chart chart-line" chart-data="data1" chart-labels="labels1" chart-series="series1" chart-options="options1" chart-dataset-override="datasetOverride1" chart-click="onClick1">
               </canvas>
+              <h3>Total Orders By Doctors</h3>
+              <canvas id="bar" class="chart chart-bar" chart-data="data2" chart-labels="labels2" chart-series="series2"></canvas>
           </div>
     </div>
 </body>

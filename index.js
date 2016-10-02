@@ -61,26 +61,31 @@ app.get('/dashboard', function (req,res) {
 
 app.get('/vendors/orders/', function(req,res) {
 
-    var ordersQuery = "SELECT orders.*, Vendor.Vendor_id, Vendor, Name FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU left join vendor ON medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor ON orders.doctor_id = doctor.doctor_id WHERE Vendor.Vendor_id = 1 group by orders.SKU order by order_status DESC,date";
+    var ordersQuery = "SELECT orders.*q, Vendor.Vendor_id, Vendor, Name FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU left join vendor ON medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor ON orders.doctor_id = doctor.doctor_id WHERE Vendor.Vendor_id = 1 group by orders.SKU order by order_status DESC,date";
 
     connection.query(ordersQuery, function(err, rows, fields) {
         if (err) throw err;
         res.send(rows);
     });
-})
+});
 
-app.get('/data', function (req,res) {
-    res.json({
-        "name": "hello"
+app.get('/vendors/analytics/total', function(req,res) {
+    var totalMedicineQuery = "select orders.SKU, sum(orders.quantity) as total, orders.date, vendor.Vendor_id FROM orders left join medicine_vendor on orders.SKU = medicine_vendor.SKU left join vendor on medicine_vendor.Vendor_id = vendor.Vendor_id where vendor.Vendor_id = 1 group by orders.SKU, orders.date";
+
+    connection.query(totalMedicineQuery, function(err, rows, fields) {
+        if (err) throw err;
+        res.send(rows);
     });
 });
 
-// SELECT orders.*, Vendor_id FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU group by orders.SKU
+app.get('/vendors/analytics/doctor', function(req,res) {
+    var doctorQuery = "select orders.order_id, orders.doctor_id, doctor.Name, sum(orders.quantity) as total, vendor.Vendor_id FROM orders left join medicine_vendor on orders.SKU = medicine_vendor.SKU left join vendor on medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor on orders.doctor_id = doctor.doctor_id where vendor.Vendor_id = 1 group by orders.doctor_id";
 
-/*connection.query('SELECT * from vendor', function(err, rows, fields) {
-    if (err) throw err;
-    //console.log(rows);
-});*/
+    connection.query(doctorQuery, function(err, rows, fields) {
+        if (err) throw err;
+        res.send(rows);
+    });
+});
 
 /*client.messages.create({
     body: 'Hello from Dorothy',
@@ -107,6 +112,13 @@ function list_messages() {
                     var phone_parsed = phone.slice(2,phone.length);
 
                     var doctorQuery = "SELECT doctor_id FROM doctor WHERE Phone = '" + phone_parsed + "';";
+
+                    var checkQuery = "SELECT SKU, quantity, doctor_id, date FROM orders";
+
+                    connection.query(checkQuery, function(err, rows, fields) {
+                        if (err) throw err;
+                        console.log(rows);
+                    });
 
                     connection.query(doctorQuery, function(err, rows, fields) {
                         if (err) throw err;

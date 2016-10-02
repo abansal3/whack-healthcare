@@ -4,8 +4,8 @@
 }
 
 body {
-  height: 100vh;
-  font-family: sans-serif;
+    height: 100vh;
+    font-family: sans-serif;
 }
 
 header {
@@ -44,6 +44,7 @@ header h2 {
   width: 85%;
   height: 100%;
   background-color: white;
+  overflow-y: scroll;
 }
 
 #profileName{
@@ -93,20 +94,38 @@ div.templates {
     margin: auto;
 }
 
-canvas#line {
-    margin: auto;
+div.templates h3 {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+canvas {
+    margin: 5% 0%;
 }
 
 /* Orders */
 
+div#orders h1 {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
 table#orders {
-    width: 70%;
+    width: 100%;
     text-align: center;
     border-collapse: collapse;
 }
 
 table#orders tr {
-    height: 30px;
+    height: 60px;
+}
+
+table th {
+    background: #252D38;
+    color: white;
 }
 
 table#orders > td {
@@ -122,9 +141,16 @@ table#orders tr:nth-child(even) {
     background: #f2f2f2;
 }
 
-/* Analytics */
+td.status {
+    font-weight: 600;
+}
 
-canvas#myChart {
-    width: 400px;
-    height: 400px;
+.pending {
+    background: red;
+    color: white;
+}
+
+.completed {
+    background: green;
+    color: white;
 }
