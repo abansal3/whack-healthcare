@@ -11,12 +11,20 @@ var bodyParser = require('body-parser');     // call body parser
 var fs = require('fs');                      // call file system
 var path = require('path');                  // call path (directory navigation)
 //var Sha256 = require('./hash.js');           // call hash.js file
+var session = require('client-sessions');
 
 var port = process.env.PORT || 8080;
 
 // Express server serving static files
 
 app.use(express.static(__dirname));
+
+app.use(session({
+  cookieName: 'session',
+  secret: Math.random().toString(36).substring(7),
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+}));
 
 // Configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -45,12 +53,17 @@ app.post('/login', function(req,res) {
     var vendor_name = req.body.vendor_name;
     var password = req.body.password;
 
-    var authenticationQuery = "SELECT password FROM vendor WHERE Vendor = '" + vendor_name + "';";
+    var authenticationQuery = "SELECT Vendor_id, password FROM vendor WHERE Vendor = '" + vendor_name + "';";
 
     connection.query(authenticationQuery, function(err, rows, fields) {
         if (err) throw err;
         if (password == rows[0].password) {
-            res.status(200).send("Authenticated");
+            var Vendor_id = rows[0].Vendor_id;
+            var User = {
+                Vendor_id: Vendor_id
+            }
+            req.session.user = User;
+            res.sendStatus(200);
         }
     });
 });
@@ -61,7 +74,7 @@ app.get('/dashboard', function (req,res) {
 
 app.get('/vendors/orders/', function(req,res) {
 
-    var ordersQuery = "SELECT orders.*q, Vendor.Vendor_id, Vendor, Name FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU left join vendor ON medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor ON orders.doctor_id = doctor.doctor_id WHERE Vendor.Vendor_id = 1 group by orders.SKU order by order_status DESC,date";
+    var ordersQuery = "SELECT orders.*, Vendor.Vendor_id, Vendor, Name FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU left join vendor ON medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor ON orders.doctor_id = doctor.doctor_id WHERE Vendor.Vendor_id = " + req.session.user.Vendor_id + " group by orders.SKU order by order_status DESC,date";
 
     connection.query(ordersQuery, function(err, rows, fields) {
         if (err) throw err;
@@ -70,7 +83,7 @@ app.get('/vendors/orders/', function(req,res) {
 });
 
 app.get('/vendors/analytics/total', function(req,res) {
-    var totalMedicineQuery = "select orders.SKU, sum(orders.quantity) as total, orders.date, vendor.Vendor_id FROM orders left join medicine_vendor on orders.SKU = medicine_vendor.SKU left join vendor on medicine_vendor.Vendor_id = vendor.Vendor_id where vendor.Vendor_id = 1 group by orders.SKU, orders.date";
+    var totalMedicineQuery = "select orders.SKU, sum(orders.quantity) as total, orders.date, vendor.Vendor_id FROM orders left join medicine_vendor on orders.SKU = medicine_vendor.SKU left join vendor on medicine_vendor.Vendor_id = vendor.Vendor_id where vendor.Vendor_id =" + req.session.user.Vendor_id + " group by orders.SKU, orders.date";
 
     connection.query(totalMedicineQuery, function(err, rows, fields) {
         if (err) throw err;
@@ -79,7 +92,7 @@ app.get('/vendors/analytics/total', function(req,res) {
 });
 
 app.get('/vendors/analytics/doctor', function(req,res) {
-    var doctorQuery = "select orders.order_id, orders.doctor_id, doctor.Name, sum(orders.quantity) as total, vendor.Vendor_id FROM orders left join medicine_vendor on orders.SKU = medicine_vendor.SKU left join vendor on medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor on orders.doctor_id = doctor.doctor_id where vendor.Vendor_id = 1 group by orders.doctor_id";
+    var doctorQuery = "select orders.order_id, orders.doctor_id, doctor.Name, sum(orders.quantity) as total, vendor.Vendor_id FROM orders left join medicine_vendor on orders.SKU = medicine_vendor.SKU left join vendor on medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor on orders.doctor_id = doctor.doctor_id where vendor.Vendor_id = " + req.session.user.Vendor_id + " group by orders.doctor_id";
 
     connection.query(doctorQuery, function(err, rows, fields) {
         if (err) throw err;
@@ -113,7 +126,7 @@ function list_messages() {
 
                     var doctorQuery = "SELECT doctor_id FROM doctor WHERE Phone = '" + phone_parsed + "';";
 
-                    var checkQuery = "SELECT SKU, quantity, doctor_id, date FROM orders";
+                    //var checkQuery = "SELECT SKU, quantity, doctor_id, date FROM orders";
 
                     connection.query(checkQuery, function(err, rows, fields) {
                         if (err) throw err;
