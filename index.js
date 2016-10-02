@@ -34,6 +34,8 @@ app.get('/data', function (req,res) {
     });
 });
 
+// SELECT orders.*, Vendor_id FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU group by orders.SKU
+
 // Database connection
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -95,7 +97,7 @@ function list_messages() {
     });
 }
 
-list_messages();
+//list_messages();
 
 // bind the app to listen for connections on a specified port
 app.listen(port, function () {
