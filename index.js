@@ -25,10 +25,10 @@ app.use(bodyParser.json());
 // Database connection
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'build2',
-  password : 'noidea',
-  database : 'medrelay'
+    host     : 'aa9g0jfn3c9v8v.cr4vvmeitypp.us-west-2.rds.amazonaws.com' || process.env.RDS_HOSTNAME,
+    user     : 'abansal3' || process.env.RDS_USERNAME,
+    password : 'vibgyor678' || process.env.RDS_PASSWORD,
+    port     : '3306' || process.env.RDS_PORT
 });
 
 // Database example
