@@ -34,6 +34,15 @@ div#filter {
   box-sizing: border-box;
 }
 
+#credentials {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+}
+
 #heading{
 	color: white;
 	font-family: Sans-serif;
@@ -48,6 +57,7 @@ input {
     box-sizing: border-box;
     padding-left: 10px;
     font-size: 1.2em;
+    margin: auto;
 }
 
 button {

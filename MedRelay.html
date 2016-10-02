@@ -14,8 +14,10 @@
 	<div id = "filter">
 		<form id="login">
 			<h1 id = "heading">MedRelay {{trial}}</h1>
-			<input name="vendor_name" placeholder="Name" id="username" ng-model="vendor_name" type="text" size="25" />
-			<input name="password" placeholder="Password" id="password" ng-model="password" type="password" size="25" />
+			<div id="credentials">
+				<input name="vendor_name" placeholder="Name" id="username" ng-model="vendor_name" type="text" size="25" />
+				<input name="password" placeholder="Password" id="password" ng-model="password" type="password" size="25" />
+			</div>
 			<button type="button" ng-click="submit()">Enter MedRelay</button>
 		</form>
 	</div>
