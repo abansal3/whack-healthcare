@@ -32,6 +32,8 @@ medrelay.controller('mainController',['$scope', '$http', '$location', function($
         }, function errorCallback(response) {
             console.log('Got error: ', response);
         });
+
+        window.location.reload();
     }
 
     $scope.orders_show = true;
