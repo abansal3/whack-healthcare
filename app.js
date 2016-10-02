@@ -20,6 +20,20 @@ medrelay.controller('mainController',['$scope', '$http', '$location', function($
         window.location.href = "/";
     }
 
+    $scope.update = function () {
+        $http({
+            method: 'POST',
+            url: '/vendors/data/update',
+            data: {
+                update: 1
+            }
+        }).then(function successCallback(response) {
+            console.log(response);
+        }, function errorCallback(response) {
+            console.log('Got error: ', response);
+        });
+    }
+
     $scope.orders_show = true;
 
     // Orders

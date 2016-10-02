@@ -72,8 +72,8 @@ div#background{
 }
 
 div#circle {
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
     border: 1px solid white;
     display: flex;
@@ -83,6 +83,7 @@ div#circle {
 
 #circle h1 {
     margin: auto;
+    font-size: 1.2em;
     color: white;
 }
 
@@ -179,4 +180,18 @@ td.status {
 .completed {
     background: green;
     color: white;
+}
+
+#update {
+    height: 40px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    background: lightgray;
+    font-size: 1.2em;
+    margin-top: 50px;
+}
+
+#update:hover {
+    cursor: pointer;
 }

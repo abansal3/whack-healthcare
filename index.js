@@ -100,6 +100,42 @@ app.get('/vendors/analytics/doctor', function(req,res) {
     });
 });
 
+app.post('/vendors/data/update', function (req,res) {
+    if (req.body.update == 1) {
+        client.messages.list(function(err, data) {
+            data.messages.forEach(function(message) {
+                var body = message.body.split(',');
+                if (message.direction == 'inbound' && body[0] == 'Medrelay') {
+                    var medicines = body.splice(1,body.length);
+                    medicines.forEach(function(medicine) {
+                        medicine = medicine.split(' ');
+                        var sku = medicine[0];
+                        var quantity = medicine[1];
+                        var timestamp = message.date_sent;
+
+                        var phone = message.from;
+                        var phone_parsed = phone.slice(2,phone.length);
+
+                        var doctorQuery = "SELECT doctor_id FROM doctor WHERE Phone = '" + phone_parsed + "';";
+
+                        connection.query(doctorQuery, function(err, rows, fields) {
+                            if (err) throw err;
+                            var doctor_id = rows[0].doctor_id;
+
+                            var insertQuery = "INSERT IGNORE INTO orders (SKU,quantity,doctor_id, date,order_status) VALUES ('" + sku + "','" + quantity + "','" + doctor_id + "','" + timestamp +  "','Pending');";
+
+                            connection.query(insertQuery, function(err, rows, fields) {
+                                if (err) throw err;
+                                console.log(rows);
+                            });
+                        });
+                    });
+                }
+            });
+        });
+    }
+});
+
 /*client.messages.create({
     body: 'Hello from Dorothy',
     to: '+16173566919',  // Text this number
@@ -108,51 +144,6 @@ app.get('/vendors/analytics/doctor', function(req,res) {
     console.log(message);
 });
 */
-
-console.log(client);
-
-function list_messages() {
-    client.messages.list(function(err, data) {
-        data.messages.forEach(function(message) {
-            var body = message.body.split(',');
-            if (message.direction == 'inbound' && body[0] == 'Medrelay') {
-                var medicines = body.splice(1,body.length);
-                medicines.forEach(function(medicine) {
-                    medicine = medicine.split(' ');
-                    var sku = medicine[0];
-                    var quantity = medicine[1];
-                    var timestamp = message.date_sent;
-
-                    var phone = message.from;
-                    var phone_parsed = phone.slice(2,phone.length);
-
-                    var doctorQuery = "SELECT doctor_id FROM doctor WHERE Phone = '" + phone_parsed + "';";
-
-                    //var checkQuery = "SELECT SKU, quantity, doctor_id, date FROM orders";
-
-                    connection.query(checkQuery, function(err, rows, fields) {
-                        if (err) throw err;
-                        console.log(rows);
-                    });
-
-                    connection.query(doctorQuery, function(err, rows, fields) {
-                        if (err) throw err;
-                        var doctor_id = rows[0].doctor_id;
-
-                        var insertQuery = "INSERT INTO orders (SKU,quantity,doctor_id, date,order_status) VALUES ('" + sku + "','" + quantity + "','" + doctor_id + "','" + timestamp +  "','Pending');";
-
-                        connection.query(insertQuery, function(err, rows, fields) {
-                            if (err) throw err;
-                            console.log(rows);
-                        });
-                    });
-                });
-            }
-        });
-    });
-}
-
-//list_messages();
 
 // bind the app to listen for connections on a specified port
 app.listen(port, function () {
