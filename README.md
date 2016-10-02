@@ -16,7 +16,7 @@ Our codes use Twilio to process the SMS messages from users and send the informa
 * Node.js - backend language
 * AngularJS - communicate between the database and the front-end
 * Angular-chart.js - data visualization
-* HTM,CSS, JavaScript - front-end design
+* HTML,CSS, JavaScript - front-end design
 
 
 ## Authors
