@@ -8,10 +8,11 @@
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js" rel="stylesheet" type="text/css" />
 
-
 <!-- Angular -->
 <script src="https://code.angularjs.org/1.5.8/angular.min.js"></script>
 <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+<script src="node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
 <script src="app.js"></script>
 </head>
 
@@ -33,9 +34,50 @@
           </div>
         </div>
       </div>
-      <div id="dashboard" ng-view>
-
-      </div>
+      <div id="dashboard">
+          <div id="orders" class="templates" ng-if="orders_show">
+              <h1>Orders Received</h1>
+              <table id="orders">
+                  <tr>
+                      <th>
+                          Medicine ID
+                      </th>
+                      <th>
+                          Quantity
+                      </th>
+                      <th>
+                          Doctor Name
+                      </th>
+                      <th>
+                          Date
+                      </th>
+                      <th>
+                          Status
+                      </th>
+                  </tr>
+                  <tr ng-repeat="order in orders">
+                      <td>
+                          {{order.SKU}}
+                      </td>
+                      <td>
+                          {{order.quantity}}
+                      </td>
+                      <td>
+                          {{order.Name}}
+                      </td>
+                      <td>
+                          {{order.date}}
+                      </td>
+                      <td>
+                          {{order.order_status}}
+                      </td>
+                  </tr>
+              </table>
+          </div>
+          <div id="analytics" class="templates" ng-if="analytics_show">
+              <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+              </canvas>
+          </div>
     </div>
 </body>
 
