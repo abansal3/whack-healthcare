@@ -53,29 +53,6 @@ header h2 {
     margin-top: 5%;
 }
 
-table#orders {
-    width: 70%;
-    text-align: center;
-    border-collapse: collapse;
-}
-
-table#orders tr {
-    height: 30px;
-}
-
-table#orders > td {
-    margin: 0;
-    padding: 0;
-}
-
-table#orders, tr, td, th {
-    border: 1px solid black;
-}
-
-table#orders tr:nth-child(even) {
-    background: #f2f2f2;
-}
-
 #profileName{
   width: 100%;
   height: 35%;
@@ -97,17 +74,43 @@ table#orders tr:nth-child(even) {
 .panel {
   height: 50%;
   width: 100%;
-  padding-left: 20px;
   display: flex;
   align-items: center;
   color: lightgray;
+  padding-left: 20%;
 }
 
 .panel:hover {
     cursor: pointer;
     color: white;
+    background: rgba(0,0,0,0.6);
 }
 
 .panel i {
-    margin-right: 10px;
+    margin-right: 10%;
+}
+
+/* Orders */
+
+table#orders {
+    width: 70%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table#orders tr {
+    height: 30px;
+}
+
+table#orders > td {
+    margin: 0;
+    padding: 0;
+}
+
+table#orders, tr, td, th {
+    border: 1px solid black;
+}
+
+table#orders tr:nth-child(even) {
+    background: #f2f2f2;
 }
