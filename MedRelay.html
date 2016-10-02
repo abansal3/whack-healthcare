@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="authentication_medrelay">
+<head>
+<title>MedRelay</title>
+<link type="text/css" rel="stylesheet" href="MedRelay.css" />
+
+<script src="https://code.angularjs.org/1.5.8/angular.min.js"></script>
+<script src="authentication.js"></script>
+</head>
+
+<body ng-controller="mainController">
+<div id="background">
+	<div id = "filter">
+		<form id="login" ng-submit="authenticate()">
+			<h1 id = "heading">MedRelay {{trial}}</h1>
+			<input name="vendor_name" placeholder="Name" id="username" ng-model="vendor_name" type="text" size="25" />
+			<input name="password" placeholder="Password" id="password" ng-model="password" type="password" size="25" />
+			<button type="button" ng-click="submit()">Enter MedRelay</button>
+		</form>
+	</div>
+</div>
+</body>
+</html>

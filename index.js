@@ -22,20 +22,6 @@ app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Index page routing
-
-app.get('/', function (req,res) {
-    res.send("Hello");
-});
-
-app.get('/data', function (req,res) {
-    res.json({
-        "name": "hello"
-    });
-});
-
-// SELECT orders.*, Vendor_id FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU group by orders.SKU
-
 // Database connection
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -47,6 +33,39 @@ var connection = mysql.createConnection({
 
 // Database example
 connection.connect();
+
+// Index page routing
+
+app.get('/', function (req,res) {
+    res.sendFile(path.join(__dirname, "/MedRelay.html"));
+});
+
+app.post('/login', function(req,res) {
+
+    var vendor_name = req.body.vendor_name;
+    var password = req.body.password;
+
+    var authenticationQuery = "SELECT password FROM vendor WHERE Vendor = '" + vendor_name + "';";
+
+    connection.query(authenticationQuery, function(err, rows, fields) {
+        if (err) throw err;
+        if (password == rows[0].password) {
+            res.status(200).send("Authenticated");
+        }
+    });
+});
+
+app.get('/dashboard', function (req,res) {
+    res.sendFile(path.join(__dirname, "/Dashboard.html"));
+});
+
+app.get('/data', function (req,res) {
+    res.json({
+        "name": "hello"
+    });
+});
+
+// SELECT orders.*, Vendor_id FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU group by orders.SKU
 
 /*connection.query('SELECT * from vendor', function(err, rows, fields) {
     if (err) throw err;
@@ -67,7 +86,6 @@ function list_messages() {
         data.messages.forEach(function(message) {
             var body = message.body.split(',');
             if (message.direction == 'inbound' && body[0] == 'Medrelay') {
-                //console.log(body);
                 var medicines = body.splice(1,body.length);
                 medicines.forEach(function(medicine) {
                     medicine = medicine.split(' ');

@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div#background{
+  position:relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url('background_img.jpg');
+  background-size: cover;
+}
+
+div#filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color:rgba(70, 96, 129, 0.4);
+}
+
+#login {
+  width: 34%;
+  height: 50%;
+  margin: auto;
+  background-color: rgba(128,128,128,0.7);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+#heading{
+	color: white;
+	font-family: Sans-serif;
+	font-size: 60px;
+}
+
+input {
+	height: 20px;
+	width: 60%;
+	padding: 5px;
+}
+
+button {
+	height: 50px;
+	width: 64%;
+	padding: 3px;
+	font-family: serif;
+	font-weight: bold;
+	font-size: 20px;
+	color: white;
+	background: rgba(47, 134, 240, 0.5);
+}
+
+input,button {
+	margin: auto;
+}

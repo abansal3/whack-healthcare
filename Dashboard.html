@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="medrelay">
+
+<head>
+<title>MedRelay</title>
+<!--<link type="text/css" rel="stylesheet" href="reset.css" />-->
+<link type="text/css" rel="stylesheet" href="Dashboard.css" />
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Angular -->
+<script src="https://code.angularjs.org/1.5.8/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.5.8/angular-resource.min.js"></script>
+<script src="app.js"></script>
+</head>
+
+<body ng-controller="mainController">
+    <header><h2>MedRelay</h2></header>
+    <div id="profile">
+      <div id="sidebar">
+        <div id = "profileName">
+            <h1>Vendor A</h1>
+        </div>
+        <div id = "panels">
+          <div class="panel">
+            <i class="fa fa-list-alt fa-lg" aria-hidden="true"></i>
+            <p>Order</p>
+          </div>
+          <div class="panel">
+            <i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i>
+            <p>Analytics</p>
+          </div>
+        </div>
+      </div>
+      <div id="dashboard">
+      </div>
+    </div>
+</body>
+
+</html>
