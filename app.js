@@ -51,6 +51,7 @@ medrelay.controller('mainController',['$scope', '$http', '$location', function($
         $scope.orders = [];
         response.data.forEach(function(order) {
             $scope.orders.push(order);
+            console.log(order);
         });
         $scope.vendor_name = response.data[0].Vendor;
     }, function errorCallback(response) {

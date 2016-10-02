@@ -74,7 +74,7 @@ app.get('/dashboard', function (req,res) {
 
 app.get('/vendors/orders/', function(req,res) {
 
-    var ordersQuery = "SELECT orders.*, Vendor.Vendor_id, Vendor, Name FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU left join vendor ON medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor ON orders.doctor_id = doctor.doctor_id WHERE Vendor.Vendor_id = " + req.session.user.Vendor_id + " group by orders.SKU order by order_status DESC,date";
+    var ordersQuery = "SELECT orders.*, Vendor.Vendor_id, Vendor, Name FROM orders left join medicine_vendor ON orders.SKU = medicine_vendor.SKU left join vendor ON medicine_vendor.Vendor_id = vendor.Vendor_id left join doctor ON orders.doctor_id = doctor.doctor_id WHERE Vendor.Vendor_id = " + req.session.user.Vendor_id + " order by order_status DESC,date";
 
     connection.query(ordersQuery, function(err, rows, fields) {
         if (err) throw err;
@@ -118,15 +118,21 @@ app.post('/vendors/data/update', function (req,res) {
 
                         var doctorQuery = "SELECT doctor_id FROM doctor WHERE Phone = '" + phone_parsed + "';";
 
+                        var checkQuery = "SELECT * FROM orders WHERE message_id = '" + message.sid + "';";
+
                         connection.query(doctorQuery, function(err, rows, fields) {
                             if (err) throw err;
                             var doctor_id = rows[0].doctor_id;
 
-                            var insertQuery = "INSERT IGNORE INTO orders (SKU,quantity,doctor_id, date,order_status) VALUES ('" + sku + "','" + quantity + "','" + doctor_id + "','" + timestamp +  "','Pending');";
+                            var insertQuery = "INSERT INTO orders (message_id,quantity,doctor_id, date,order_status,SKU) VALUES ('" + message.sid + "','" + quantity + "','" + doctor_id + "','" + timestamp +  "','Pending','" + sku + "');";
 
-                            connection.query(insertQuery, function(err, rows, fields) {
-                                if (err) throw err;
-                                console.log(rows);
+                            connection.query(checkQuery, function(err, rows, fields) {
+                                if (rows.length == 0) {
+                                    connection.query(insertQuery, function(err, rows, fields) {
+                                        if (err) throw err;
+                                        console.log(rows);
+                                    });
+                                }
                             });
                         });
                     });
