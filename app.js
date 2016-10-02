@@ -6,16 +6,10 @@ medrelay.config(function($routeProvider) {
     $routeProvider
         .when("/orders", {
             templateUrl : "templates/orders.html"
+    })
+        .when("/analytics", {
+            templateUrl : "templates/analytics.html"
     });
-    /*    .when("/red", {
-            templateUrl : "red.htm"
-    })
-        .when("/green", {
-            templateUrl : "green.htm"
-    })
-        .when("/blue", {
-            templateUrl : "blue.htm"
-    });*/
 });
 
 medrelay.controller('mainController',['$scope', '$http', '$location', function($scope,$http,$location) {
