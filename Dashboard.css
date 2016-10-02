@@ -19,6 +19,17 @@ header {
 header h2 {
   margin: auto;
   color: white;
+  width: 80%;
+}
+
+#logout {
+    height: 50%;
+    width: 100px;
+    margin-right: 2%;
+    border: 2px solid rgba(87, 119, 242, 1);
+    background: white;
+    color: black;
+    font-size: 1.2em;
 }
 
 #profile {
@@ -53,24 +64,24 @@ header h2 {
   height: 35%;
   display: flex;
   align-items: center;
-  flex-direction: column;
 }
 
 div#background{
   width: 100%;
   height: 55%;
-  background-image: url('profile_pic.png');
 }
 
-div#vendor_name{
-  width: 100%;
-  height: 30%;
-  display: flex;
-  align-items: center;
-  padding: 0 10%;
+div#circle {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    margin: auto;
 }
 
-#profileName h1 {
+#circle h1 {
     margin: auto;
     color: white;
 }

@@ -17,13 +17,12 @@
 </head>
 
 <body ng-controller="mainController">
-    <header><h2>MedRelay</h2></header>
+    <header><h2>MedRelay</h2><button id="logout" ng-click="logout()">Logout</button></header>
     <div id="profile">
       <div id="sidebar">
         <div id = "profileName">
-          <div id = "background"></div>
-          <div id = "vendor_name">
-            <h1>{{vendor_name}}</h1>
+            <div id="circle">
+                <h1>{{vendor_name}}</h1>
             </div>
         </div>
         <div id = "panels">

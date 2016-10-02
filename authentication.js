@@ -4,8 +4,8 @@ var medrelay = angular.module('authentication_medrelay',[]);
 
 medrelay.controller('mainController',['$scope', '$http', '$location', function($scope,$http,$location) {
 
-$scope.vendor_name = "Imres";
-$scope.password = "password1";
+$scope.vendor_name = "";
+$scope.password = "";
 
 $scope.submit = function () {
     // Simple GET request example:
@@ -27,4 +27,5 @@ $scope.submit = function () {
         // or server returns response with an error status.
     });
 }
+
 }]);

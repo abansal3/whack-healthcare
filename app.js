@@ -16,6 +16,10 @@ medrelay.config(function($routeProvider) {
 
 medrelay.controller('mainController',['$scope', '$http', '$location', function($scope,$http,$location) {
 
+    $scope.logout = function () {
+        window.location.href = "/";
+    }
+
     $scope.orders_show = true;
 
     // Orders
