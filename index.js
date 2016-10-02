@@ -109,6 +109,8 @@ app.get('/vendors/analytics/doctor', function(req,res) {
 });
 */
 
+console.log(client);
+
 function list_messages() {
     client.messages.list(function(err, data) {
         data.messages.forEach(function(message) {
