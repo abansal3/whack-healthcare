@@ -191,6 +191,7 @@ td.status {
     background: lightgray;
     font-size: 1.2em;
     margin-top: 50px;
+    margin-bottom: 40px;
 }
 
 #update:hover {
